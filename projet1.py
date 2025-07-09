@@ -6,47 +6,58 @@ st.set_page_config(page_title="📊 Dashboard LafargeHolcim", layout="wide")
 
 # --- CSS ---
 st.markdown("""
-    <style>
-    [data-testid="stAppViewContainer"] {
-        background-color: #0a192f;
-        color: #ccd6f6;
-        padding: 20px 35px;
-        font-family: 'Segoe UI', sans-serif;
+<style>
+[data-testid="stAppViewContainer"] {
+    background-color: #0a192f;
+    color: #ccd6f6;
+    padding: 20px 35px;
+    font-family: 'Segoe UI', sans-serif;
+}
+[data-testid="stSidebar"] {
+    background-color: #112240;
+    color: white;
+    margin: 5px;
+    border-radius: 5%;
+    padding: 10px;
+}
+h1 { color: #64ffda; font-size: 34px; font-weight: bold; }
+h3 { font-size: 18px; font-weight: 600; color: #00bcd4; margin-bottom: 10px; }
+.card {
+    background-color: #112240;
+    border-radius: 10px;
+    padding: 20px 10px 10px 10px;
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
+    margin-bottom: 20px;
+}
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.sidebar-logo img {
+    width: 40px;
+    border-radius: 5px;
+}
+.logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #64ffda;
+}
+
+/* 📱📲 RESPONSIVE LAYOUT */
+@media screen and (max-width: 768px) {
+    .css-1kyxreq, .css-1x8cf1d {
+        flex-direction: column !important;
     }
-    [data-testid="stSidebar"] {
-        background-color: #112240;
-        color: white;
-        margin:5px;
-        border-radius: 5%;
-        padding:10px;
-    }
-    h1 { color: #64ffda; font-size: 34px; font-weight: bold; }
-    h3 { font-size: 18px; font-weight: 600; color: #00bcd4; margin-bottom: 10px; }
     .card {
-        background-color: #112240;
-        border-radius: 10px;
-        padding: 20px;
-        padding-top: 0px;
-        box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
-        margin-bottom: 20px;
+        padding: 15px 10px;
     }
-    .sidebar-logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-    .sidebar-logo img {
-        width: 40px;
-        border-radius: 5px;
-    }
-    .logo-text {
-        font-size: 18px;
-        font-weight: 700;
-        letter-spacing: 3px;
-        color: #64ffda;
-    }
-    </style>
+    h1 { font-size: 24px !important; }
+    h3 { font-size: 16px !important; }
+}
+</style>
 """, unsafe_allow_html=True)
 
 # --- Sidebar ---
