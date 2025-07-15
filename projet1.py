@@ -50,48 +50,16 @@ h3 { font-size: 18px; font-weight: 600; color: #00bcd4; margin-bottom: 10px; }
 }
 
 /* 📱📲 RESPONSIVE LAYOUT */
-/* Cacher la sidebar native sur mobile */
 @media screen and (max-width: 768px) {
-    /* Masquer sidebar */
-    [data-testid="stSidebar"] {
-        display: none !important;
+    .css-1kyxreq, .css-1x8cf1d {
+        flex-direction: column !important;
     }
-    /* Masquer la barre du bouton hamburger */
-    button[title="Toggle sidebar"] {
-        display: none !important;
+    .card {
+        padding: 15px 10px;
     }
-    /* Créer menu horizontal fixe en haut */
-    .topnav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #112240;
-        display: flex;
-        justify-content: space-around;
-        padding: 10px 0;
-        z-index: 9999;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        font-weight: 600;
-        font-size: 14px;
-    }
-    .topnav a {
-        color: #E8c39E;
-        text-decoration: none;
-        padding: 6px 12px;
-        border-radius: 6px;
-        transition: background-color 0.3s ease;
-    }
-    .topnav a:hover {
-        background-color: #c8ad7f;
-        color: #0a192f;
-    }
-    /* Ajouter padding top au body pour éviter chevauchement */
-    main[data-testid="stAppViewContainer"] {
-        padding-top: 60px !important;
-    }
+    h1 { font-size: 24px !important; }
+    h3 { font-size: 16px !important; }
 }
-
     div.stButton > button {
         width: 100%;
         height: 50px;
