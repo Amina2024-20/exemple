@@ -16,7 +16,7 @@ st.markdown("""
 [data-testid="stSidebar"] {
     background-color: #112240;
     color: white;
-    margin: 5px;
+    margin-left: 0px;
     border-radius: 5%;
     padding: 10px;
 }
@@ -25,6 +25,7 @@ h3 { font-size: 18px; font-weight: 600; color: #00bcd4; margin-bottom: 10px; }
 .card {
     background-color: #112240;
     border-radius: 10px;
+    color:#E8c39E;
     padding: 20px 10px 10px 10px;
     box-shadow: 1px 1px 10px rgba(0,0,0,0.3);
     margin-bottom: 20px;
@@ -33,30 +34,81 @@ h3 { font-size: 18px; font-weight: 600; color: #00bcd4; margin-bottom: 10px; }
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
 }
 .sidebar-logo img {
-    width: 40px;
-    border-radius: 5px;
+    width: 30px;
+    height:30px;
+    border-radius: 50%;
 }
 .logo-text {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     letter-spacing: 3px;
-    color: #64ffda;
+    color: #c8ad7f;
+    
 }
 
 /* 📱📲 RESPONSIVE LAYOUT */
+/* Cacher la sidebar native sur mobile */
 @media screen and (max-width: 768px) {
-    .css-1kyxreq, .css-1x8cf1d {
-        flex-direction: column !important;
+    /* Masquer sidebar */
+    [data-testid="stSidebar"] {
+        display: none !important;
     }
-    .card {
-        padding: 15px 10px;
+    /* Masquer la barre du bouton hamburger */
+    button[title="Toggle sidebar"] {
+        display: none !important;
     }
-    h1 { font-size: 24px !important; }
-    h3 { font-size: 16px !important; }
+    /* Créer menu horizontal fixe en haut */
+    .topnav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #112240;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+        z-index: 9999;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .topnav a {
+        color: #E8c39E;
+        text-decoration: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+    }
+    .topnav a:hover {
+        background-color: #c8ad7f;
+        color: #0a192f;
+    }
+    /* Ajouter padding top au body pour éviter chevauchement */
+    main[data-testid="stAppViewContainer"] {
+        padding-top: 60px !important;
+    }
 }
+
+    div.stButton > button {
+        width: 100%;
+        height: 50px;
+        background-color:#c8ad7f ;
+        color: #ffffff;
+        font-weight: bold;
+        font-size: 16px;
+        border-radius: 10px;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    div.stButton > button:hover {
+        background-color:  #fdecda;
+        color: black;
+    }
+    
 </style>
 """, unsafe_allow_html=True)
 
@@ -78,7 +130,7 @@ uploaded_file = st.sidebar.file_uploader("📤 Importer un fichier Excel", type=
 
 if st.sidebar.button("🔔 Notifications"):
     st.session_state.mode = "notifications"
-if st.sidebar.button("📦 Ordres"):
+if st.sidebar.button("   📦 Ordres       "):
     st.session_state.mode = "orders"
 
 
@@ -138,7 +190,7 @@ if uploaded_file:
                     draw_card("Par Statut", data, "Nombre", "Statut", colors)
             with col4:
                 if 'Main work center' in df_n.columns:
-                    data = df_n['Main work center'].dropna().value_counts()
+                    data = df_n['Main work center'].value_counts()
                     colors = ["#29b6f6"] * len(data)
                     draw_card("Par Work Center", data, "Nombre", "Centre", colors)
         else:
@@ -165,12 +217,12 @@ if uploaded_file:
         else:
             st.warning("Le fichier ne contient pas les colonnes 'Basic start date' et/ou 'Order' nécessaires.")
 else:
-    st.info("📥 Veuillez importer un fichier Excel contenant les colonnes nécessaires.")
+    st.markdown(""" <h4 style="margin-top:0px;padding-top:0px;color:#E8c39E; text-align:center;"> 💼 Bienvenue dans votre espace </h4>""",unsafe_allow_html=True)
 st.sidebar.markdown("""
         <hr style="border:0.5px solid #334155;">
-        <p style="font-size:12px; color:#94a3b8; text-align:center;">
+        <p style="font-size:12px; color:#fff6ed; text-align:center;">
         © 2025 LafargeHolcim Meknès<br>
-        Bureau Méthodes<br><br>
-        <span style="font-size:11px;">Développé par: <strong style="color:#facc15;">Amina Benkhay</strong></span>
+        Bureau De Méthodes<br><br>
+        <span style="font-size:11px;">Développé par: <strong style="color:#E8c39E;">Amina Benkhay</strong></span>
         </p>
         """, unsafe_allow_html=True)
