@@ -134,10 +134,11 @@ if uploaded_file:
             mois_choisi = st.sidebar.selectbox("📅 Mois Notifications", mois_list, key="mois_notifications")
             df_n = df[df['Année-Mois'] == mois_choisi]
 
-            st.markdown("## 🔔 Analyse  des Notifications")
-            st.markdown(f"#### Mois sélectionné : {mois_choisi}")
-            st.markdown(f"- Total global : **{len(df)}** notifications")
-            st.markdown(f"- Pour ce mois : **{len(df_n)}** notifications")
+            st.markdown('<h2 style="color:#18d2a6;">🔔 Analyse  des Notifications</h2>', unsafe_allow_html=True)
+            st.markdown(f'<h4 style="color:#c8ad7f;">Mois sélectionné : {mois_choisi}</h4>', unsafe_allow_html=True)
+            st.markdown(f'<h6 style="color:#fdecda">- Total global :{len(df)} notifications</h6>',unsafe_allow_html=True)
+            st.markdown(f'<h6 style="color:#fdecda">- Pour ce mois :{len(df_n)} notifications</h6>',unsafe_allow_html=True)
+
 
             col1, col2, col3, col4 = st.columns(4)
             with col1:
@@ -174,10 +175,10 @@ if uploaded_file:
             mois_choisi_o = st.sidebar.selectbox("📅 Mois Ordres", mois_list_order, key="mois_orders")
             df_o = df[df['Année-Mois'] == mois_choisi_o]
 
-            st.markdown("## 📦 Statistiques des Ordres")
-            st.markdown(f"#### Mois sélectionné : {mois_choisi_o}")
-            st.markdown(f"- Total global : **{df['Order'].nunique()}** ordres")
-            st.markdown(f"- Pour ce mois : **{df_o['Order'].nunique()}** ordres")
+            st.markdown('<h2 style="color:#18d2a6;">📦 Statistiques des Ordres</h2>', unsafe_allow_html=True)
+            st.markdown(f'<h4 style="color:#c8ad7f;">Mois sélectionné : {mois_choisi_o}</h4>', unsafe_allow_html=True)
+            st.markdown(f'<h6 style="color:#fdecda">- Total global : {df['Order'].nunique()} ordres</h6>',unsafe_allow_html=True)
+            st.markdown(f'<h6 style="color:#fdecda">- Pour ce mois : {df_o['Order'].nunique()} ordres</h6>',unsafe_allow_html=True)
 
             col1, col2, col3, col4 = st.columns(4)
 
@@ -208,7 +209,7 @@ if uploaded_file:
         else:
             st.warning("Le fichier ne contient pas les colonnes 'Basic start date' et/ou 'Order' nécessaires.")
 else:
-    st.markdown(""" <h4 style="margin-top:0px;padding-top:0px;color:#E8c39E; text-align:center;"> 💼 Bienvenue dans votre espace </h4>""",unsafe_allow_html=True)
+    st.markdown(""" <h4 style="margin-top:0px;padding-top:0px;color:#18d2a6; text-align:center;"> 💼 Bienvenue dans votre espace </h4>""",unsafe_allow_html=True)
 st.sidebar.markdown("""
         <hr style="border:0.5px solid #334155;">
         <p style="font-size:12px; color:#fff6ed; text-align:center;">
