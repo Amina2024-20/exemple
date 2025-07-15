@@ -165,7 +165,7 @@ if uploaded_file:
             st.warning("Le fichier ne contient pas la colonne 'Notification date' nécessaire.")
 
     elif st.session_state.mode == "orders":
-        if 'Basic start date' in df.columns and 'Order' in df.columns:
+        if  'Basic start date' in df.columns and 'Order' in df.columns:
             df['Basic start date'] = pd.to_datetime(df['Basic start date'], errors='coerce')
             df.dropna(subset=['Basic start date'], inplace=True)
             df['Année-Mois'] = df['Basic start date'].dt.to_period('M').astype(str)
@@ -179,9 +179,32 @@ if uploaded_file:
             st.markdown(f"- Total global : **{df['Order'].nunique()}** ordres")
             st.markdown(f"- Pour ce mois : **{df_o['Order'].nunique()}** ordres")
 
-            data = df_o.groupby("LocShort")["Order"].nunique().sort_values(ascending=True)
-            colors = ["#4dd0e1"] * len(data)
-            draw_card("Ordres par Emplacement", data, "Nombre", "Location", colors)
+            col1, col2, col3, col4 = st.columns(4)
+
+            with col1:
+                if 'LocShort' in df_o.columns:
+                    data = df_o.groupby("LocShort")["Order"].nunique().sort_values(ascending=True)
+                    colors = ["#4dd0e1"] * len(data)
+                    draw_card("Par Emplacement", data, "Nombre", "Location", colors)
+
+            with col2:
+                if 'Main work center' in df_o.columns:
+                    data = df_o['Main work center'].fillna("Vide").astype(str).value_counts()
+                    colors = ["#9575cd"] * len(data)
+                    draw_card("Par Work Center", data, "Nombre", "Centre", colors)
+
+            with col3:
+                if 'Planner group' in df_o.columns:
+                    data = df_o['Planner group'].fillna("Vide").astype(str).value_counts()
+                    colors = ["#ffb74d"] * len(data)
+                    draw_card("Par Planner Group", data, "Nombre", "Groupe", colors)
+
+            with col4:
+                if 'Order Type' in df_o.columns:
+                    data = df_o['Order Type'].fillna("Vide").astype(str).value_counts()
+                    colors = ["#4db6ac"] * len(data)
+                    draw_card("Par Type d’Ordre", data, "Nombre", "Type", colors)
+
         else:
             st.warning("Le fichier ne contient pas les colonnes 'Basic start date' et/ou 'Order' nécessaires.")
 else:
